@@ -1,0 +1,14 @@
+@(object: Form[%clazz])
+
+@main("Editar") {
+  <div class="container">
+    @helper.form(action = routes.%Jodsons.update(object.get().id)) {
+      <label for="nome">nome </label>
+<p><input class="form-control" type="text" name="nome" value="@form("nome").value"/></p>
+<label for="nani">nani </label>
+<p><input class="form-control" type="text" name="nani" value="@form("nani").value"/></p>
+
+      <p><input type="submit" value="Salvar" class="btn btn-info" /></p>
+    }
+  </div>
+}

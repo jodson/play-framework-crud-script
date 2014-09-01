@@ -1,0 +1,9 @@
+@(obj: %clazz)
+
+@main("show") {
+
+  <div class="container">
+    %variables
+  </div>
+
+}

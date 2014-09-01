@@ -1,0 +1,15 @@
+package models;
+
+import javax.persistence.Entity;
+import java.util.List;
+@Entity
+public class %clazz extends Timestampable {
+
+  %variables
+
+  public static Finder<Long,%clazz> find = new Finder(Long.class, %clazz.class);
+
+  public static List<%clazz> all() {
+    return find.all();
+  }
+}

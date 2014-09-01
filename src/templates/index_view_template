@@ -1,0 +1,28 @@
+@(objects: List[%clazz])
+
+@main("Index") {
+  <div class="container">
+    <div class="col-md-10">
+      <a href="@routes.%Controller.create()" >Criar</a>
+      <div class="row">
+        <div class="col-md-8">
+          %name
+        </div>
+        <div class="col-md-2">
+          Ação
+        </div> 
+        @for(obj <- objects) {
+          <div class="col-md-8">
+            <a href="@routes.%Controller.show(obj.id)">@obj.%name</a>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-danger" href="@routes.%Controller.delete(obj.id)">Delete</a>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-info" href="@routes.%Controller.edit(obj.id)">Edit</a>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

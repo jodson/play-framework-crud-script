@@ -1,0 +1,10 @@
+@(form: Form[%clazz])
+
+@main("Editar") {
+  <div class="container">
+    @helper.form(action = routes.%Controller.update(form.get().id)) {
+      %inputs
+      <p><input type="submit" value="Salvar" class="btn btn-info" /></p>
+    }
+  </div>
+}

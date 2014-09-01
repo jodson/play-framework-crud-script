@@ -1,0 +1,78 @@
+package controllers;
+
+import java.io.File;
+import java.util.List;
+
+import com.avaje.ebean.PagingList;
+
+import models.%clazz;
+import play.data.DynamicForm;
+import play.data.Form;
+import play.mvc.Controller;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
+import play.mvc.Result;
+import play.mvc.Security;
+
+public class %Controller extends Controller {
+	
+  final static Form<%clazz> myForm = Form.form(%clazz.class);
+
+  public static Result create() {
+    return ok(views.html.%controller.create.render(myForm));
+  }
+
+  public static Result edit(Long id) {
+    %clazz object = %clazz.find.byId(id);
+    return ok(views.html.%controller.edit.render(myForm.fill(object)));
+  }
+
+  public static Result delete(Long id){
+    %clazz object = %clazz.find.byId(id);
+    if(object != null) {
+      object.delete();
+      return found(routes.%Controller.index());
+    }
+    return badRequest();
+  }
+
+  public static Result update(Long id){
+    Form<%clazz> form = myForm.bindFromRequest();
+    if(form.hasErrors()){
+      return badRequest(views.html.%controller.create.render(form));
+    }
+
+    %clazz found = %clazz.find.byId(id);
+
+    %clazz object = form.get();
+    %edit
+    found.update();
+
+    return found(routes.%Controller.show(found.id));
+    
+  }
+
+  public static Result save(){
+    Form<%clazz> form = myForm.bindFromRequest();
+    if(form.hasErrors()){
+      return badRequest(views.html.%controller.create.render(form));
+    }
+    
+    %clazz object = form.get();
+    object.save();
+
+    return found(routes.%Controller.index());
+    
+  }
+
+  public static Result show(Long id) {
+    %clazz object = %clazz.find.byId(id);
+    return ok(views.html.%controller.show.render(object));
+  }
+
+  public static Result index() {
+    List<%clazz> objects = %clazz.all();
+    return ok(views.html.%controller.index.render(objects));
+  }
+
+}

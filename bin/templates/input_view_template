@@ -1,0 +1,2 @@
+<label for="%name">%name </label>
+<p><input class="form-control" type="text" name="%name" value="@form("%name").value"/></p>
